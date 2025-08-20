@@ -54,27 +54,37 @@ devtools::install_github("jimnoneill/miceResiduals")
 ## Quick Start
 
 ```r
-library(miceResiduals)
+# Load the packages
+library(miceResiduals)  # This provides our main function: add_residuals_to_mice()
 library(mice)
 
 # Assume you have multiply imputed data
 data(nhanes2, package = "mice")
 imp_data <- mice(nhanes2, m = 5, printFlag = FALSE)
 
-# Build your exposure models
+# Build your exposure models using standard mice functions
 models <- list(
   baseline = with(imp_data, glm(chl ~ age + bmi, family = gaussian())),
   adjusted = with(imp_data, glm(chl ~ age + bmi + hyp, family = gaussian()))
 )
 
-# Add residuals to your mids object
-result <- add_residuals_to_mice(imp_data, models)
+# Add residuals using OUR PACKAGE'S main function
+result <- add_residuals_to_mice(imp_data, models)  # <- This comes from miceResiduals package
 
 # Now you can use the residuals in further analysis
 analysis <- with(result, glm(chl ~ residuals_baseline, family = gaussian()))
 pooled_results <- pool(analysis)
 summary(pooled_results)
 ```
+
+### What You Get When You Load the Package
+
+When you run `library(miceResiduals)`, these functions become available:
+
+- `add_residuals_to_mice()` - Main function to add model residuals to mids objects
+- `build_exposure_models()` - Helper to create standardized exposure models  
+- `calculate_residual_differences()` - Calculate differences between model residuals
+- `repack_mice_with_residuals()` - Utility to repack data into mids format
 
 ## Key Functions
 
@@ -113,8 +123,10 @@ This package was originally developed for cannabis exposure research where:
 - **Proper MICE format** must be maintained for valid inference
 
 ```r
-# Cannabis research workflow
-exposure_models <- build_exposure_models(
+# Cannabis research workflow using miceResiduals package functions
+library(miceResiduals)  # Load our package first!
+
+exposure_models <- build_exposure_models(  # <- From miceResiduals package
   mice_object = baseline_imp30,
   outcome_vars = c("meancountsM", "AGG5_PGE15000M"),
   base_predictors = c("AirNicotineugm3", "cig7new", "cigar7new", "pipe7new"),
@@ -122,10 +134,10 @@ exposure_models <- build_exposure_models(
 )
 
 # Add all residuals at once
-final_data <- add_residuals_to_mice(baseline_imp30, exposure_models)
+final_data <- add_residuals_to_mice(baseline_imp30, exposure_models)  # <- miceResiduals
 
 # Calculate cannabis-specific residuals
-final_data <- calculate_residual_differences(
+final_data <- calculate_residual_differences(  # <- Also from miceResiduals
   final_data,
   "residuals_baseline", 
   "residuals_cannabis",
