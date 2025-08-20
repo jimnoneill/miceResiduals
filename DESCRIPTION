@@ -1,0 +1,27 @@
+Package: miceResiduals
+Type: Package
+Title: Multiple Imputation and Residual Integration for Restricted Cubic Splines
+Version: 0.1.0
+Authors@R: person("Jim", "O'Neill", email = "jimnoneill@gmail.com", role = c("aut", "cre"))
+Description: Provides functionality for working with multiply imputed datasets in the 
+    context of Restricted Cubic Spline (RCS) modeling. This package addresses the 
+    limitation that RCS models don't work directly on multiple datasets by providing 
+    tools to pool datasets, extract and add model residuals back to imputed datasets, 
+    and repack them into the proper MICE format. Originally developed for cannabis 
+    exposure research but applicable to any multiple imputation workflow requiring 
+    residual integration.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.2
+Imports:
+    mice,
+    dplyr,
+    purrr
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/jimnoneill/miceResiduals
+BugReports: https://github.com/jimnoneill/miceResiduals/issues

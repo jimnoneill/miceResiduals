@@ -1,0 +1,24 @@
+# R specific files
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Package specific
+/doc/
+/Meta/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*~
+*.swp
+*.tmp
+
+# Build artifacts
+*.o
+*.so
+*.dll
