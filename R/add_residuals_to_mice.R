@@ -160,7 +160,6 @@ add_residuals_to_mice <- function(mice_object, models, seed = 10000, max_iter = 
 #' }
 #'
 #' @export
-#' @importFrom mice with
 #' @importFrom stats glm gaussian
 build_exposure_models <- function(mice_object, outcome_vars, base_predictors, 
                                  marijuana_var = NULL, family = gaussian()) {
