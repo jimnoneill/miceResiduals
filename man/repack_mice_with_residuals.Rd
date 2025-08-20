@@ -22,3 +22,4 @@ This is a utility function used internally by other functions.
 This function handles the technical details of converting a list of
 data frames back into the mids format expected by the mice package.
 }
+

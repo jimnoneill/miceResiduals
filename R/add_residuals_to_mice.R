@@ -1,3 +1,10 @@
+# miceResiduals: Multiple Imputation and Residual Integration for RCS
+# Copyright (c) 2024 Jim O'Neill
+# Licensed under the MIT License - see LICENSE file for details
+# 
+# Originally developed for cannabis exposure research in environmental health
+# Released as open source software to benefit the research community
+
 #' Add Model Residuals to Multiply Imputed Datasets
 #'
 #' This function takes multiply imputed datasets (mids object) and fitted models,
@@ -286,3 +293,4 @@ repack_mice_with_residuals <- function(completed_data, seed = 10000, max_iter = 
   
   return(dummy_mice)
 }
+

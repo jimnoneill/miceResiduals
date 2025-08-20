@@ -58,3 +58,4 @@ pooled_result <- with(result, glm(new_outcome ~ residuals_exp, family = gaussian
 summary(pool(pooled_result))
 }
 }
+

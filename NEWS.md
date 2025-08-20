@@ -36,10 +36,15 @@
 
 ## Background
 
-This package was developed to address a specific limitation in multiple imputation workflows where Restricted Cubic Spline (RCS) models don't work directly on multiple datasets. Originally created for cannabis exposure research, it's applicable to any multiple imputation analysis requiring residual integration.
+This **open source** package was developed to address a specific limitation in multiple imputation workflows where Restricted Cubic Spline (RCS) models don't work directly on multiple datasets. Originally created for **cannabis exposure research published in environmental health literature**, it's now freely available to the research community for any multiple imputation analysis requiring residual integration.
+
+## Open Source Commitment
+
+Released under the MIT License to benefit researchers worldwide. This package represents a contribution to open science, sharing methodological solutions developed for peer-reviewed environmental health research.
 
 The package automates the complex process of:
 1. Extracting completed datasets from mids objects
 2. Adding model residuals to each dataset
 3. Repacking data while maintaining mids format integrity
 4. Enabling downstream analyses with proper multiple imputation inference
+

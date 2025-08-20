@@ -167,3 +167,4 @@ test_that("utility functions work correctly", {
   expect_error(validate_model_list("not_list"), "must be a list")
   expect_error(validate_model_list(list(model1)), "must be a named list")
 })
+

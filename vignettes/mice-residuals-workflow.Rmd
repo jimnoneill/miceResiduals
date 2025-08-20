@@ -288,3 +288,4 @@ For cannabis research and other environmental health applications, this package 
 ```{r session-info}
 sessionInfo()
 ```
+

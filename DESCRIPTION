@@ -8,8 +8,9 @@ Description: Provides functionality for working with multiply imputed datasets i
     limitation that RCS models don't work directly on multiple datasets by providing 
     tools to pool datasets, extract and add model residuals back to imputed datasets, 
     and repack them into the proper MICE format. Originally developed for cannabis 
-    exposure research but applicable to any multiple imputation workflow requiring 
-    residual integration.
+    exposure research published in environmental health literature, but applicable to 
+    any multiple imputation workflow requiring residual integration. This is open 
+    source software released under the MIT License to benefit the research community.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
