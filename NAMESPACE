@@ -2,6 +2,7 @@
 
 export(add_residuals_to_mice)
 export(build_exposure_models)
+export(calculate_residual_differences)
 export(repack_mice_with_residuals)
 importFrom(dplyr,"%>%")
 importFrom(mice,complete)
