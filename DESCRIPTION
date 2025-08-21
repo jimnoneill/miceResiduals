@@ -23,6 +23,5 @@ Suggests:
     testthat (>= 3.0.0),
     knitr,
     rmarkdown
-VignetteBuilder: knitr
 URL: https://github.com/jimnoneill/miceResiduals
 BugReports: https://github.com/jimnoneill/miceResiduals/issues
