@@ -35,7 +35,7 @@ This workflow is common in environmental health research, particularly when stud
 
 ## Setup
 
-```{r load-packages}
+```{r load-packages, eval=FALSE}
 library(miceResiduals)
 library(mice)
 library(dplyr)
@@ -48,7 +48,7 @@ data(nhanes2, package = "mice")
 
 First, let's create some multiply imputed data to work with:
 
-```{r create-mice}
+```{r create-mice, eval=FALSE}
 # Create multiple imputations
 # In practice, you'd use more imputations (20-30+)
 set.seed(123)
@@ -60,7 +60,7 @@ print(imp_data)
 
 Now we fit the models we're interested in. For this example, we'll create models predicting cholesterol with different sets of predictors:
 
-```{r fit-models}
+```{r fit-models, eval=FALSE}
 # Fit baseline exposure model
 baseline_model <- with(imp_data, glm(chl ~ age + bmi, family = gaussian()))
 
@@ -85,7 +85,7 @@ This is where the magic happens. The `add_residuals_to_mice()` function will:
 - Add residuals from each model to each dataset
 - Repack everything into a proper `mids` format
 
-```{r add-residuals}
+```{r add-residuals, eval=FALSE}
 # Add residuals to the mids object
 result <- add_residuals_to_mice(
   mice_object = imp_data,
@@ -104,7 +104,7 @@ names(result$data)
 
 Let's examine what happened:
 
-```{r explore-results}
+```{r explore-results, eval=FALSE}
 # Extract one completed dataset to see the structure
 completed_sample <- complete(result, 1)
 head(completed_sample)
@@ -123,7 +123,7 @@ hist(completed_sample$residuals_baseline,
 
 Often you want to examine the difference between models. For example, the difference between adjusted and baseline model residuals represents the effect of the additional predictor:
 
-```{r residual-differences}
+```{r residual-differences, eval=FALSE}
 # Calculate residual differences
 result_with_diff <- calculate_residual_differences(
   mice_object = result,
@@ -146,7 +146,7 @@ hist(completed_with_diff$residuals_hyp_effect,
 
 Now you can use these residuals in subsequent analyses while maintaining proper multiple imputation inference:
 
-```{r use-residuals}
+```{r use-residuals, eval=FALSE}
 # Example: Use baseline residuals as a predictor in a new model
 residual_analysis <- with(result, glm(chl ~ residuals_baseline + age, family = gaussian()))
 
@@ -163,7 +163,7 @@ pool(residual_comparison) %>% summary()
 
 For environmental health research, the package includes a helper function to build standardized exposure models:
 
-```{r exposure-models}
+```{r exposure-models, eval=FALSE}
 # This function is particularly useful for cannabis/environmental research
 # where you often compare models with/without exposure variables
 
@@ -226,7 +226,7 @@ plot(baseline_model$analyses[[1]], which = 1:2)
 ### 3. Use Descriptive Names
 Use descriptive names for your models to keep track of what each represents:
 
-```{r best-practices-names}
+```{r best-practices-names, eval=FALSE}
 descriptive_models <- list(
   "age_bmi_only" = baseline_model,
   "age_bmi_hyp" = adjusted_model
@@ -288,6 +288,11 @@ For cannabis research and other environmental health applications, this package 
 ```{r session-info}
 sessionInfo()
 ```
+
+
+
+
+
 
 
 
