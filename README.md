@@ -10,7 +10,7 @@
 
 The `miceResiduals` package provides functionality for working with multiply imputed datasets in the context of Restricted Cubic Spline (RCS) modeling. This package addresses a specific limitation: RCS models don't work directly on multiple datasets, requiring data to be pooled first.
 
-**Originally developed for cannabis exposure research published in environmental health literature**, this open source package is applicable to any multiple imputation workflow requiring residual integration.
+**Originally developed for the study "Exposure to secondhand cannabis smoke among children" published in JAMA Network Open (2025)** (https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2829482), this open source package is applicable to any multiple imputation workflow requiring residual integration.
 
 ### Open Source Research Software
 
@@ -115,7 +115,7 @@ Calculate differences between model residuals:
 
 ## Use Case: Cannabis Research
 
-This package was originally developed for cannabis exposure research where:
+This package was originally developed for secondhand cannabis smoke exposure research among children where:
 
 - **30 imputed datasets** need to be pooled for RCS modeling
 - **Multiple exposure models** are fitted (with/without cannabis)
@@ -186,19 +186,28 @@ The package handles several technical challenges:
 
 This package was developed to address methodological challenges in **cannabis exposure research** using multiple imputation and Restricted Cubic Spline modeling. The methods implemented here were created for environmental health research examining cannabis exposure patterns and their health implications.
 
+**This package was specifically developed for and used in the peer-reviewed study "Exposure to secondhand cannabis smoke among children" published in JAMA Network Open (2025):** https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2829482
+
 ### Academic Context
 
-The statistical methods and workflow implemented in this package were developed for peer-reviewed research in environmental health. The package solves the specific problem of integrating RCS models with multiple imputation - a challenge commonly encountered when analyzing environmental exposure data with missing values.
+The statistical methods and workflow implemented in this package were developed for the above peer-reviewed research in environmental health. The package solves the specific problem of integrating RCS models with multiple imputation - a challenge commonly encountered when analyzing environmental exposure data with missing values.
 
 ## Citation
 
 If you use this package in your research, please cite:
 
 ```
-O'Neill, J. (2024). miceResiduals: Multiple Imputation and Residual Integration for Restricted Cubic Splines. 
+ONeill, Jamey (2024). miceResiduals: Multiple Imputation and Residual Integration for Restricted Cubic Splines. 
 R package version 0.1.0. https://github.com/jimnoneill/miceResiduals
+```
 
-# Also consider citing the original cannabis exposure research that motivated this package development
+**Please also cite the original research that this package was developed for:**
+
+```
+Tripathi, O., Parada, H., Sosnoff, C., Matt, G. E., Quintana, P. J. E., Shi, Y., 
+Liles, S., Wang, L., Caron, K. T., Oneill, J., et al. (2025). Exposure to 
+secondhand cannabis smoke among children. JAMA Network Open, 8(1), e2455963.
+https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2829482
 ```
 
 ## Contributing

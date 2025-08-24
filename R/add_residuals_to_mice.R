@@ -1,5 +1,5 @@
 # miceResiduals: Multiple Imputation and Residual Integration for RCS
-# Copyright (c) 2024 Jim O'Neill
+# Copyright (c) 2024 Jamey ONeill
 # Licensed under the MIT License - see LICENSE file for details
 # 
 # Originally developed for cannabis exposure research in environmental health
