@@ -124,9 +124,8 @@ add_residuals_to_mice <- function(mice_object, models, seed = 10000, max_iter = 
   # Fill dummy object with all imputed data
   variable_names <- names(dummy_mice$data)
   for (var_name in variable_names) {
-    dummy_mice$imp[[var_name]] <- completed_data %>% 
-      map(var_name) %>% 
-      do.call(cbind, .)
+    var_data <- map(completed_data, var_name)
+    dummy_mice$imp[[var_name]] <- do.call(cbind, var_data)
   }
   
   # Set proper mids class and metadata
@@ -292,9 +291,8 @@ repack_mice_with_residuals <- function(completed_data, seed = 10000, max_iter = 
   # Fill with all data
   variable_names <- names(dummy_mice$data)
   for (var_name in variable_names) {
-    dummy_mice$imp[[var_name]] <- completed_data %>% 
-      map(var_name) %>% 
-      do.call(cbind, .)
+    var_data <- map(completed_data, var_name)
+    dummy_mice$imp[[var_name]] <- do.call(cbind, var_data)
   }
   
   # Set proper metadata

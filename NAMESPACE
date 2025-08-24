@@ -10,4 +10,5 @@ importFrom(mice,mice)
 importFrom(purrr,map)
 importFrom(stats,gaussian)
 importFrom(stats,glm)
+importFrom(stats,as.formula)
 
