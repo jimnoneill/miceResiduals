@@ -58,6 +58,7 @@
 #' @importFrom mice complete mice
 #' @importFrom purrr map
 #' @importFrom dplyr %>%
+#' @importFrom stats as.formula
 add_residuals_to_mice <- function(mice_object, models, seed = 10000, max_iter = 50) {
   
   # Input validation
@@ -65,7 +66,18 @@ add_residuals_to_mice <- function(mice_object, models, seed = 10000, max_iter = 
     stop("mice_object must be a mids object from the mice package")
   }
   
-  if (!is.list(models) || is.null(names(models))) {
+  # Check if models is a named list first
+  if (!is.list(models) || length(models) == 0) {
+    stop("models must be a named list of model objects")
+  }
+  
+  # Check if models has names
+  if (is.null(names(models)) || any(names(models) == "")) {
+    stop("models must be a named list of model objects")
+  }
+  
+  # Special check: if models is a mira object (single model), it's not what we want
+  if (inherits(models, "mira")) {
     stop("models must be a named list of model objects")
   }
   
@@ -160,7 +172,7 @@ add_residuals_to_mice <- function(mice_object, models, seed = 10000, max_iter = 
 #' }
 #'
 #' @export
-#' @importFrom stats glm gaussian
+#' @importFrom stats glm gaussian as.formula
 build_exposure_models <- function(mice_object, outcome_vars, base_predictors, 
                                  marijuana_var = NULL, family = gaussian()) {
   
@@ -177,13 +189,13 @@ build_exposure_models <- function(mice_object, outcome_vars, base_predictors,
     # Base model without marijuana
     formula_base <- as.formula(paste(outcome, "~", base_formula_str))
     model_name <- paste0(gsub("[^A-Za-z0-9]", "_", outcome), "_base")
-    models[[model_name]] <- base::with(mice_object, glm(formula_base, family = family))
+    models[[model_name]] <- with(mice_object, glm(formula_base, family = family))
     
     # Model with marijuana if specified
     if (!is.null(marijuana_var)) {
       formula_mj <- as.formula(paste(outcome, "~", marijuana_var, "+", base_formula_str))
       model_name_mj <- paste0(gsub("[^A-Za-z0-9]", "_", outcome), "_mj")
-      models[[model_name_mj]] <- base::with(mice_object, glm(formula_mj, family = family))
+      models[[model_name_mj]] <- with(mice_object, glm(formula_mj, family = family))
     }
   }
   
@@ -261,6 +273,7 @@ calculate_residual_differences <- function(mice_object, model1_residuals,
 #' @importFrom mice mice complete
 #' @importFrom purrr map
 #' @importFrom dplyr %>%
+#' @importFrom stats as.formula
 repack_mice_with_residuals <- function(completed_data, seed = 10000, max_iter = 50) {
   
   if (!is.list(completed_data)) {

@@ -86,8 +86,8 @@ make_safe_var_name <- function(base_name, prefix = "residuals_") {
   safe_name <- gsub("[^A-Za-z0-9_]", "_", base_name)
   # Remove multiple consecutive underscores
   safe_name <- gsub("_+", "_", safe_name)
-  # Remove leading/trailing underscores
-  safe_name <- gsub("^_|_$", "", safe_name)
+  # Remove only leading underscores (keep trailing ones from character replacement)
+  safe_name <- gsub("^_+", "", safe_name)
   # Add prefix
   paste0(prefix, safe_name)
 }
@@ -117,6 +117,13 @@ print.mids_with_residuals <- function(x, ...) {
   
   invisible(x)
 }
+
+
+
+
+
+
+
 
 
 
