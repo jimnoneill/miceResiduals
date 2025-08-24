@@ -177,13 +177,13 @@ build_exposure_models <- function(mice_object, outcome_vars, base_predictors,
     # Base model without marijuana
     formula_base <- as.formula(paste(outcome, "~", base_formula_str))
     model_name <- paste0(gsub("[^A-Za-z0-9]", "_", outcome), "_base")
-    models[[model_name]] <- with(mice_object, glm(formula_base, family = family))
+    models[[model_name]] <- base::with(mice_object, glm(formula_base, family = family))
     
     # Model with marijuana if specified
     if (!is.null(marijuana_var)) {
       formula_mj <- as.formula(paste(outcome, "~", marijuana_var, "+", base_formula_str))
       model_name_mj <- paste0(gsub("[^A-Za-z0-9]", "_", outcome), "_mj")
-      models[[model_name_mj]] <- with(mice_object, glm(formula_mj, family = family))
+      models[[model_name_mj]] <- base::with(mice_object, glm(formula_mj, family = family))
     }
   }
   
