@@ -55,7 +55,7 @@
 #' }
 #'
 #' @export
-#' @importFrom mice complete with mice
+#' @importFrom mice complete mice
 #' @importFrom purrr map
 #' @importFrom dplyr %>%
 add_residuals_to_mice <- function(mice_object, models, seed = 10000, max_iter = 50) {
